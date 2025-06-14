@@ -1,5 +1,5 @@
 package appTest;
-import ticTacToe.component.Button;
+import ticTacToe.component.button.Button;
 import ticTacToe.gui.MainWindow;
 
 public class AppButtonPaintableTest {

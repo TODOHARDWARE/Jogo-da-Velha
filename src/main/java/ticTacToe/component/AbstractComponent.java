@@ -1,10 +1,12 @@
 package ticTacToe.component;
 
 import ticTacToe.gui.Paintable;
+import ticTacToe.gui.util.MouseListenerAdapter;
 import ticTacToe.gui.util.MouseMotionAdapter;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public abstract class AbstractComponent implements Paintable {
@@ -62,6 +64,19 @@ public abstract class AbstractComponent implements Paintable {
                 (point.y > yTop && point.y < yBottom));
     }
 
+    public MouseListener mouseListener() {
+        return new MouseListenerAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent me) {
+
+                if(isOver(me.getPoint()))
+                    onMouseClick(me);
+
+            }
+        };
+    }
+
     public MouseMotionListener mouseMotionListener() {
         return new MouseMotionAdapter() {
 
@@ -78,4 +93,10 @@ public abstract class AbstractComponent implements Paintable {
             }
         };
     }
+
+    //--Polymorphic Methods------------------------------------
+    protected void onMouseClick(MouseEvent me) {
+    }
+
+
 }
