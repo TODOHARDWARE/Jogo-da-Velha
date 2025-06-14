@@ -1,27 +1,27 @@
 package ticTacToe.gui;
 
+import ticTacToe.component.AbstractComponent;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class Table implements Paintable {
-    private Point position;
-    private Dimension dimension;
+public class Table extends AbstractComponent {
     private ImageIcon icon;
 
     public Table(){
-        this.position = new Point (0,0);
-        this.dimension = new Dimension (100,100);
+        super.position = new Point (0,0);
+        super.dimension = new Dimension (100,100);
         this.icon = null;
     }
 
     public Table(ImageIcon icon){
-        this();
+        super();
         this.icon = icon;
     }
 
     public Table(int x, int y, int width, int height, ImageIcon icon) {
-        this.position = new Point(x, y);
-        this.dimension = new Dimension(width, height);
+        super.position = new Point(x, y);
+        super.dimension = new Dimension(width, height);
         this.icon = icon;
     }
 
