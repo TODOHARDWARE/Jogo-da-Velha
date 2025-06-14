@@ -1,32 +1,27 @@
-package ticTacToe.gui;
-
-import ticTacToe.component.AbstractComponent;
+package ticTacToe.component.button;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Table extends AbstractComponent {
+public class ImageButton extends Button {
     private ImageIcon icon;
 
-    public Table(){
-        //super.position = new Point (0,0);
-        //super.dimension = new Dimension (100,100);
+    public ImageButton() {
         super();
         this.icon = null;
     }
 
-    public Table(ImageIcon icon){
+    public ImageButton(ImageIcon icon) {
         super();
         this.icon = icon;
     }
 
-    public Table(int x, int y, int width, int height, ImageIcon icon) {
+    public ImageButton(int x, int y, int width, int height, ImageIcon icon) {
         super(x, y, width, height);
         this.icon = icon;
     }
 
 
-    @Override
     public void paint(Graphics g) {
         if (icon == null)
             return;
