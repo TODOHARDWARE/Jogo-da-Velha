@@ -7,6 +7,9 @@ import ticTacToe.model.table.ReadOnlyTableModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.ArrayList;
 
 public class TableView extends AbstractComponent {
     private ImageIcon icon = null;
@@ -61,6 +64,45 @@ public class TableView extends AbstractComponent {
 
     public void setTableModel(ReadOnlyTableModel tableModel){
         this.tableModel = tableModel;
+    }
+
+    //--mouseMove------------------------------------------------------
+    @Override
+    protected void onMouseMove(MouseEvent me) {
+
+        for(int lin=0; lin<table.length; lin++) {
+            for(int col=0; col<table[lin].length; col++) {
+
+                if(table[lin][col].isOver(me.getPoint()))
+                    dispatchCellClickEvent(lin, col);
+            }
+        }
+    }
+
+    public final class CellClickEvent {
+        public final int lin;
+        public final int col;
+        public CellClickEvent(int lin, int col) {
+            this.lin = lin;
+            this.col = col;
+        }
+    }
+
+    public interface CellClickListener {
+        void onClick(CellClickEvent event);
+    }
+
+    //--Observer Pattern-------------------------------------------------
+    List<CellClickListener> cellClicklisteners = new ArrayList<>();
+    public void addCellClickListener(CellClickListener listener) {
+        cellClicklisteners.add(listener);
+    }
+    public void removeCellClickListener(CellClickListener listener) {
+        cellClicklisteners.remove(listener);
+    }
+    private void dispatchCellClickEvent(int lin, int col) {
+        CellClickEvent event = new CellClickEvent(lin, col);
+        cellClicklisteners.forEach(listener -> listener.onClick(event));
     }
 
     //--interface Paintable----------------------------------------------------

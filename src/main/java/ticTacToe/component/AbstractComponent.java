@@ -77,26 +77,25 @@ public abstract class AbstractComponent implements Paintable {
         };
     }
 
+
+    //--reacting to mouse movement ---------------------------------
     public MouseMotionListener mouseMotionListener() {
         return new MouseMotionAdapter() {
-
             @Override
             public void mouseMoved(MouseEvent me) {
-
-                if(!isOver(me.getPoint())){
-                    mouseOver = false;
-                    return;
-                }
-
-                mouseOver = true;
-
+                mouseOver = isOver( me.getPoint() );
+                onMouseMove(me);
             }
         };
     }
 
-    //--Polymorphic Methods------------------------------------
-    protected void onMouseClick(MouseEvent me) {
-    }
 
+    //--polymorphic methods ---------------------------------------------
+    protected void onMouseClick(MouseEvent me) {
+        /** The standard behavior is to do absolutely nothing */
+    }
+    protected void onMouseMove(MouseEvent me) {
+        /** The standard behavior is to do absolutely nothing */
+    }
 
 }
