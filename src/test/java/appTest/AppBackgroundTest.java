@@ -1,6 +1,6 @@
 package appTest;
 import ticTacToe.gui.MainWindow;
-import ticTacToe.gui.Table;
+import ticTacToe.gui.TableView;
 
 import javax.swing.*;
 import java.net.URL;
@@ -21,7 +21,7 @@ public class AppBackgroundTest {
         window.setBackground(icon);
 
         icon = loadImage(path + "tic-tac-toe.png");
-        Table table = new Table(50, 50, 200, 200, icon);
-        window.add(table);
+        TableView tableView = new TableView(50, 50, 200, 200, icon);
+        window.add(tableView);
     }
 }
