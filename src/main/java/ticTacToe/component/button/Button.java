@@ -49,7 +49,7 @@ public class Button extends AbstractComponent {
 
 
     //--interface Paintable
-    private void doMouseOverDecoration(Graphics g){
+    void doMouseOverDecoration(Graphics g){
         Color color = g.getColor();
         g.setColor(Color.RED);
         g.drawRect(position.x + 2, position.y + 2,

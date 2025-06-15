@@ -4,15 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ImageButton extends Button {
-    private ImageIcon icon;
+    private ImageIcon icon = null;
 
     public ImageButton() {
         super();
-        this.icon = null;
     }
 
-    public ImageButton(ImageIcon icon) {
-        super();
+    public ImageButton(int x, int y, ImageIcon icon) {
+        super(x, y, icon.getIconWidth(), icon.getIconHeight());
         this.icon = icon;
     }
 
@@ -21,16 +20,26 @@ public class ImageButton extends Button {
         this.icon = icon;
     }
 
+    public void setImage(ImageIcon icon) {
+        this.icon = icon;
+    }
 
+    public ImageIcon getImage() {
+        return this.icon;
+    }
+
+
+    private void drawImage(Graphics2D g2D) {
+        g2D.drawImage(icon.getImage(),
+                position.x, position.y,
+                width(), height(), null);
+    }
+
+    @Override
     public void paint(Graphics g) {
-        if (icon == null)
-            return;
-
-        int xLeft = position.x;
-        int yTop = position.y;
-        int width = dimension.width;
-        int height = dimension.height;
-
-        g.drawImage(icon.getImage(), xLeft, yTop, width, height, null);
+        if(icon != null)
+            drawImage((Graphics2D)g);
+        if(mouseOver)
+            super.doMouseOverDecoration(g);
     }
 }
